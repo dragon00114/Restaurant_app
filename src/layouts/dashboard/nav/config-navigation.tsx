@@ -3,6 +3,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 // components
 import SvgColor from '../../../components/svg-color';
 
+
 // ----------------------------------------------------------------------
 
 const icon = (name: string) => (
@@ -36,6 +37,8 @@ const ICONS = {
   dashboard: icon('ic_dashboard'),
   payment: icon_page('ic_paypal'),
 };
+// import { useAuthContext } from '../../../auth/useAuthContext';
+// const { user } = useAuthContext();
 
 const navConfig = [
   {
@@ -47,8 +50,9 @@ const navConfig = [
         path: PATH_DASHBOARD.user.account,
         icon: ICONS.user,
         children: [
-          // { title: 'create', path: PATH_DASHBOARD.user.new },
-          // { title: 'edit', path: PATH_DASHBOARD.user.demoEdit },
+          { title: 'create', path: PATH_DASHBOARD.user.new },
+          { title: 'edit', path: PATH_DASHBOARD.user.edit('a') },
+          { title: 'list', path: PATH_DASHBOARD.user.list },
           { title: 'account', path: PATH_DASHBOARD.user.account },
         ],
       },
@@ -57,10 +61,10 @@ const navConfig = [
         path: PATH_DASHBOARD.eCommerce.root,
         icon: ICONS.cart,
         children: [
+          { title: 'create item', path: PATH_DASHBOARD.eCommerce.new },
+          { title: 'edit item', path: PATH_DASHBOARD.eCommerce.edit('name') },
           { title: 'shop', path: PATH_DASHBOARD.eCommerce.shop },
-          // { title: 'product', path: PATH_DASHBOARD.eCommerce.demoView },
           { title: 'order-list', path: PATH_DASHBOARD.eCommerce.list },
-          // { title: 'add item', path: PATH_DASHBOARD.eCommerce.new },
           { title: 'checkout', path: PATH_DASHBOARD.eCommerce.checkout },
         ],
       },
@@ -72,6 +76,16 @@ const navConfig = [
         icon: ICONS.invoice,
         children: [
           { title: 'list', path: PATH_DASHBOARD.invoice.list },
+        ],
+      },
+      {
+        title: 'Extra',
+        path: PATH_DASHBOARD.extra.root,
+        icon: ICONS.menuItem,
+        children: [
+          { title: 'banner manage', path: PATH_DASHBOARD.extra.banner },
+          { title: 'coupon', path: PATH_DASHBOARD.extra.coupon },
+          { title: 'notification', path: PATH_DASHBOARD.extra.notify },
         ],
       },
     ],

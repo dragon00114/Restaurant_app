@@ -15,6 +15,7 @@ import {
   ResetPasswordPage,
   GeneralAppPage,
   UserAccountPage,
+  UserListPage,
   EcommerceShopPage,
   EcommerceCheckoutPage,
   EcommerceProductDetailsPage,
@@ -24,7 +25,11 @@ import {
   NewPasswordPage,
   OrderListPage,
   DiscountWheel,
-  PopUpBannerPage
+  PopUpBannerPage,
+  UserCreatePage,
+  UserEditPage,
+  EcommerceProductCreatePage,
+  EcommerceProductEditPage
 } from './elements';
 
 // ----------------------------------------------------------------------
@@ -111,6 +116,8 @@ export default function Router() {
             { element: <Navigate to="/dashboard/e-commerce/shop" replace />, index: true },
             { path: 'shop', element: <EcommerceShopPage /> },
             { path: 'product/:name', element: <EcommerceProductDetailsPage /> },
+            { path: 'product/:name/edit', element: <EcommerceProductEditPage /> },
+            { path: 'product/new-product', element: <EcommerceProductCreatePage /> },
             { path: 'list', element: <OrderListPage /> },
             { path: 'checkout', element: <EcommerceCheckoutPage /> },
           ],
@@ -120,9 +127,11 @@ export default function Router() {
           children: [
             { element: <Navigate to="/dashboard/user/profile" replace />, index: true },
             { path: 'account', element: <UserAccountPage /> },
-            { path: 'list', element: <MembershipListPage /> },
+            { path: 'list', element: <UserListPage /> },
             { path: 'manage-product', element: <ProductPage /> },
             { path: 'coupon', element: <DiscountWheel /> },
+            { path: 'new', element: <UserCreatePage /> },
+            { path: ':name/edit', element: <UserEditPage /> },
             { path: 'popup-banner', element: <PopUpBannerPage /> },
           ],
         },
@@ -133,6 +142,15 @@ export default function Router() {
             { path: 'list', element: <InvoiceListPage /> },
           ],
         },
+        {
+          path : 'extra',
+          children : [
+            {element : <Navigate to='/dashboard/extra/banner' replace />, index : true},
+            {path : 'banner', element : <PopUpBannerPage />},
+            {path : 'coupon', element : <DiscountWheel />},
+            {path : 'notify', element : <PopUpBannerPage />},
+          ]
+        }
 
       ],
     }

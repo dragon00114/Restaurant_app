@@ -11,6 +11,7 @@ import Iconify from 'src/components/iconify/Iconify';
 import { Box, Grid, Card, Stack, Typography,FormControlLabel, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // auth
+import axios from 'axios';
 import { useAuthContext } from '../../../../auth/useAuthContext';
 // utils
 import { fData } from '../../../../utils/formatNumber';
@@ -18,6 +19,7 @@ import { fData } from '../../../../utils/formatNumber';
 import { countries } from '../../../../assets/data';
 // components
 import { CustomFile } from '../../../../components/upload';
+
 import { useSnackbar } from '../../../../components/snackbar';
 import FormProvider, {
   RHFSwitch,
@@ -86,26 +88,42 @@ export default function AccountGeneral() {
   } = methods;
 
   const onSubmit = async (data: FormValuesProps) => {
-    try {
-      const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem('accessToken');
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
+        }
+      };
+  
+      try {
+        const response = await axios.put('http://localhost:3000/auth/update', data, config);
+        enqueueSnackbar(response.data.message);
+        console.log(response.data.user);
+      } catch (error) {
+        console.error(error);
+      }
+    // const token = localStorage.getItem("accessToken");
+    // try {
+    //   const response = await fetch('http://localhost:3000/auth/update', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': `Bearer ${token}`
+    //     },
+    //     body: JSON.stringify(data)
+    //   });
       
-      fetch('http://localhost:3000/auth/update', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(res=>{
-          enqueueSnackbar(res.message);
-          console.log(res.user)
-        })
-    
-    } catch (error) {
-      console.error(error);
-    }
+    //   if (!response.ok) {
+    //     throw new Error('Request failed');
+    //   }
+      
+    //   const res = await response.json();
+    //   enqueueSnackbar(res.message);
+    //   console.log(res.user);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const handleDrop = useCallback(

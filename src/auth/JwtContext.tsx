@@ -99,7 +99,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
 
-        const response = await axios.get('/api/account/my-account');
+        const response = await axios.get('/auth/myaccount', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
 
         const { user } = response.data;
 
@@ -136,7 +140,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [initialize]);
 
   // LOGIN
-  const login = useCallback(async (email: string, password: string) => {
+    const login = useCallback(async (email: string, password: string) => {
     const response = await axios.post('/auth/login', {
       email,
       password,

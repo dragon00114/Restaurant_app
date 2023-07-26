@@ -69,7 +69,7 @@ export default function EcommerceProductDetailsPage() {
 
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <CustomBreadcrumbs
-          heading="Product Details"
+          heading="Product 23232"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             {

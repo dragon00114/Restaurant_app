@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import { LoadingButton } from '@mui/lab';
 import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel } from '@mui/material';
+import axios from 'axios';
 // utils
 import { fData } from '../../../utils/formatNumber';
 // routes
@@ -105,8 +106,32 @@ export default function UserNewEditForm({ isEdit = false, currentUser }: Props) 
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!');
-      navigate(PATH_DASHBOARD.user.list);
+      const token = localStorage.getItem('accessToken');
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
+        }
+      };
+      if(!isEdit){
+        try {
+          const response = await axios.post('http://localhost:3000/auth/create-new-user', data);
+          enqueueSnackbar(response.data.message);
+          console.log(response.data.user);
+        } catch (error) {
+          console.error(error);
+        }
+      }else{
+        try {
+            const response = await axios.put('http://localhost:3000/auth/update', data, config);
+            enqueueSnackbar(response.data.message);
+            console.log(response.data.user);
+          } catch (error) {
+            console.error(error);
+          }
+      }
+      // enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!');
+      // navigate(PATH_DASHBOARD.user.list);
       console.log('DATA', data);
     } catch (error) {
       console.error(error);
@@ -116,7 +141,7 @@ export default function UserNewEditForm({ isEdit = false, currentUser }: Props) 
   const handleDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
-
+      console.log(file, "file------------");
       const newFile = Object.assign(file, {
         preview: URL.createObjectURL(file),
       });

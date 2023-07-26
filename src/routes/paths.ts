@@ -7,6 +7,9 @@ function path(root: string, sublink: string) {
 const ROOTS_AUTH = '/auth';
 const ROOTS_DASHBOARD = '/dashboard';
 
+
+
+
 // ----------------------------------------------------------------------
 
 export const PATH_AUTH = {
@@ -73,7 +76,7 @@ export const PATH_DASHBOARD = {
     shop: path(ROOTS_DASHBOARD, '/e-commerce/shop'),
     list: path(ROOTS_DASHBOARD, '/e-commerce/list'),
     checkout: path(ROOTS_DASHBOARD, '/e-commerce/checkout'),
-    new: path(ROOTS_DASHBOARD, '/e-commerce/product/new'),
+    new: path(ROOTS_DASHBOARD, '/e-commerce/product/new-product'),
     view: (name: string) => path(ROOTS_DASHBOARD, `/e-commerce/product/${name}`),
     edit: (name: string) => path(ROOTS_DASHBOARD, `/e-commerce/product/${name}/edit`),
     demoEdit: path(ROOTS_DASHBOARD, '/e-commerce/product/nike-blazer-low-77-vintage/edit'),
@@ -96,6 +99,12 @@ export const PATH_DASHBOARD = {
     view: (title: string) => path(ROOTS_DASHBOARD, `/blog/post/${title}`),
     demoView: path(ROOTS_DASHBOARD, '/blog/post/apply-these-7-secret-techniques-to-improve-event'),
   },
+  extra : {
+    root : path(ROOTS_DASHBOARD, '/extra'),
+    banner : path(ROOTS_DASHBOARD, '/extra/banner'),
+    coupon : path(ROOTS_DASHBOARD, '/extra/coupon'),
+    notify : path(ROOTS_DASHBOARD, '/extra/notify'),
+  }
 };
 
 export const PATH_DOCS = {

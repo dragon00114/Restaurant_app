@@ -38,17 +38,17 @@ export default function MembershipListPage(){
         })
     },[])
 
-      const handleNameChange = (id: String, newName: string) => {
-        // setData((prevData) =>
-        //   prevData.map((row) => (row._id === _id ? { ...row, name: newName } : row))
-        // );
-      };
+    //   const handleNameChange = (id: String, newName: string) => {
+    //     // setData((prevData) =>
+    //     //   prevData.map((row) => (row._id === _id ? { ...row, name: newName } : row))
+    //     // );
+    //   };
     
-      const handleAgeChange = (id: number, newAge: number) => {
-        // setData((prevData) =>
-        //   prevData.map((row) => (row._id === _id ? { ...row, age: newAge } : row))
-        // );
-      };
+    //   const handleAgeChange = (id: number, newAge: number) => {
+    //     // setData((prevData) =>
+    //     //   prevData.map((row) => (row._id === _id ? { ...row, age: newAge } : row))
+    //     // );
+    //   };
 
       const handleAddRow = () => {
         const newId = Date.now();
@@ -78,8 +78,8 @@ export default function MembershipListPage(){
         // setData((prevData) => prevData.filter((row) => row._id !== id));
       };
       
-    const [initialValue, setInitialValue] = useState();
-    const thead = ["Name","Email", "Address",]
+    // const [initialValue, setInitialValue] = useState();
+    // const thead = ["Name","Email", "Address",]
     
     
 
@@ -111,12 +111,13 @@ export default function MembershipListPage(){
                     <TableCell>
                         <TextField
                         value={row.displayName}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleNameChange(row._id, Number(e.target.value))}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
-
+                        style={{width : '140px'}}
                         value={row.email}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
@@ -124,42 +125,49 @@ export default function MembershipListPage(){
                     <TableCell>
                         <TextField
                         value={row.address}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.state}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.city}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.zipCode}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.country}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.phoneNumber}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>
                     <TableCell>
                         <TextField
                         value={row.isPublic}
+                        style={{width : '140px'}}
                         // onChange={(e) => handleAgeChange(row._id, e.target.value)}
                         />
                     </TableCell>

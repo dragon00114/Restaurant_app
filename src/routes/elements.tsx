@@ -39,6 +39,13 @@ export const EcommerceCheckoutPage = Loadable(
   lazy(() => import('../pages/dashboard/EcommerceCheckoutPage'))
 );
 
+export const EcommerceProductCreatePage = Loadable(
+  lazy(() => import('../pages/dashboard/EcommerceProductCreatePage'))
+);
+export const EcommerceProductEditPage = Loadable(
+  lazy(() => import('../pages/dashboard/EcommerceProductEditPage'))
+);
+
 // DASHBOARD: INVOICE
 export const InvoiceListPage = Loadable(lazy(() => import('../pages/dashboard/InvoiceListPage')));
 export const OrderListPage = Loadable(lazy(() => import('../pages/dashboard/OrderListPage')));
@@ -46,10 +53,13 @@ export const OrderListPage = Loadable(lazy(() => import('../pages/dashboard/Orde
 // DASHBOARD: USER
 export const UserProfilePage = Loadable(lazy(() => import('../pages/dashboard/UserProfilePage')));
 export const UserAccountPage = Loadable(lazy(() => import('../pages/dashboard/UserAccountPage')));
+export const UserCreatePage = Loadable(lazy(() => import('../pages/dashboard/UserCreatePage')));
+export const UserEditPage = Loadable(lazy(() => import('../pages/dashboard/UserEditPage')));
 export const MembershipListPage = Loadable(lazy(() => import('../pages/dashboard/MembershipListPage')));
 export const ProductPage = Loadable(lazy(() => import('../pages/dashboard/ProductPage')));
 export const DiscountWheel = Loadable(lazy(() => import('../pages/dashboard/SpinWheelPage')));
 export const PopUpBannerPage = Loadable(lazy(() => import('../pages/dashboard/PopUpBannerPage')));
+export const UserListPage = Loadable(lazy(() => import('../pages/dashboard/UserListPage')));
 
 
 

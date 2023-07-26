@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import QRCodeGenerator from './QrCodeGenerator';
-
+// import QRCodeGenerator from './QrCodeGenerator';
+import {Container, Button} from '@mui/material';
+import { Helmet } from 'react-helmet-async';
+import { useSettingsContext } from '../../components/settings';
+import CustomBreadcrumbs from '../../components/custom-breadcrumbs';
+import { PATH_DASHBOARD } from '../../routes/paths';
+import { useSnackbar } from '../../components/snackbar';
 import './spinwheel.css';
 
 
 const DiscountWheel: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedDiscount, setSelectedDiscount] = useState('');
 
@@ -25,41 +31,65 @@ const DiscountWheel: React.FC = () => {
     // Simulating a delay for the spinning animation
     setTimeout(() => {
       setSelectedDiscount(selectedCoupon);
+      enqueueSnackbar(`Congretulation! you won ${selectedCoupon}discount`);
       setIsSpinning(false);
     }, 2000);
+
+    // enqueueSnackbar("aaa");
   };
 
   const copyCouponCode = () => {
     navigator.clipboard.writeText(couponCode);
     setIsCopied(true);
   };
+  const { themeStretch } = useSettingsContext();
+
 
   return (
-    <div>
-      <h1>Discount Spin Wheel of Fortune</h1>
-      <button type='button' onClick={spinWheel} disabled={isSpinning}>
-        Spin the Wheel
-      </button>
-      {isSpinning && <div className="spinner" />}
-      {!isSpinning && selectedDiscount && (
-        <>
-            <h2>Congratulations! You won {selectedDiscount} discount!</h2>
-            <div>
-            <p>{couponCode}</p>
-            <button type='button' onClick={copyCouponCode}>
-              {isCopied ? 'Copied!' : 'Copy Coupon Code'}
-            </button>
+    <>
+      <Helmet>
+          <title> Ecommerce: Create a new product | Minimal UI</title>
+      </Helmet>
+      <Container maxWidth={themeStretch ? false : 'lg'}>
+          <CustomBreadcrumbs
+          heading="Discount Spin Wheel of Fortune"
+          links={[
+              { name: 'Dashboard', href: PATH_DASHBOARD.root },
+              {
+              name: 'Extra',
+              href: PATH_DASHBOARD.extra.root,
+              },
+              { name: 'Coupon' },
+          ]}
+          />
+          <div>
+            <Button variant='contained' color='primary' onClick={spinWheel} disabled={isSpinning}>
+              Spin the Wheel
+            </Button>
+            {isSpinning && <div className="spinner" />}
+            {!isSpinning && selectedDiscount && (
+              <>
+                  {/* <h4>Congratulations! You won {selectedDiscount} discount!</h4> */}
+                  <div>
+                  <p>{couponCode}</p>
+                  <Button variant='contained' onClick={copyCouponCode} color='primary'>
+                    {isCopied ? 'Copied!' : 'Copy'}
+                  </Button>
+                </div>
+              </>
+              
+            )}
+            {/* <QRCodeGenerator
+              productId="12345"
+              price={10.99}
+              count={3}
+              amount={32.97}
+            /> */}
           </div>
-        </>
-        
-      )}
-      <QRCodeGenerator
-        productId="12345"
-        price={10.99}
-        count={3}
-        amount={32.97}
-      />
-    </div>
+      </Container>
+      
+    </>
+    
   );
 };
 
